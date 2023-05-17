@@ -6,7 +6,7 @@ import Home from './Home';
 import {NavigationContainer} from '@react-navigation/native';
 import {Text, View, Image} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import Model from './Model';
+import Model from './Text2Image';
 
 const Drawer = createDrawerNavigator();
 
@@ -17,15 +17,19 @@ export const CustomNav = () => {
       drawerContent={props => {
         return (
           <SafeAreaView
-            style={{flex: 1, paddingTop: 20, backgroundColor: 'white'}}>
+            style={{
+              flex: 1,
+              backgroundColor: 'white',
+            }}>
             <View
               style={{
                 justifyContent: 'center',
                 alignItems: 'center',
-                height: 140,
+                height: '25%',
+                paddingBottom: 10,
               }}>
               <Image
-                style={{width: 96, height: 88}}
+                style={{width: '100%', height: '100%'}}
                 source={require('.././assets/dummy.jpg')}
               />
             </View>
@@ -36,9 +40,9 @@ export const CustomNav = () => {
       screenOptions={{
         headershown: false,
       }}>
-      <Drawer.Screen name="Home" component={Home} />
-      <Drawer.Screen name="Model" component={Model} />
-      <Drawer.Screen name="About" component={About} />
+      <Drawer.Screen name="Sign To Text" component={Home} />
+      <Drawer.Screen name="Text To Sign" component={Model} />
+      <Drawer.Screen name="Learn" component={About} />
     </Drawer.Navigator>
   );
 };
