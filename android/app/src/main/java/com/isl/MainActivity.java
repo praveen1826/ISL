@@ -1,4 +1,4 @@
-package com.isl;
+package com.apocalypselabs.isl;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;

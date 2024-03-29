@@ -1,4 +1,4 @@
-package com.isl;
+package com.apocalypselabs.isl;
 
 import android.app.Application;
 import com.facebook.react.PackageList;

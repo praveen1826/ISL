@@ -52,6 +52,8 @@ const Home: () => Node = () => {
   const [fileUri, setFileUri] = useState(0);
   const [prediction, setPrediction] = useState();
   const [predictionV2, setPredictionV2] = useState();
+  const [predictionV3, setPredictionV3] = useState();
+  const [predictionMN, setPredictionMN] = useState();
   const [isClicked, setIsClicked] = useState(false);
 
   const uploadImage = async fileUri => {
@@ -69,32 +71,42 @@ const Home: () => Node = () => {
     // Request made to the backend api
     // Send formData object
     await axios
-      .post(
-        'http://isl-app.centralindia.cloudapp.azure.com:8000/predict/',
-        formData,
-        {
-          withCredentials: true,
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
+      .post('http://172.16.77.135:8000/predict/', formData, {
+        withCredentials: true,
+        headers: {
+          'Content-Type': 'multipart/form-data',
         },
-      )
+      })
       //.then(response => console.log(response.data))
       .then(response => setPrediction(response.data.prediction));
 
     await axios
-      .post(
-        'http://isl-app.centralindia.cloudapp.azure.com:8000/predictV2/',
-        formData,
-        {
-          withCredentials: true,
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
+      .post('http://172.16.77.135:8000/predictV2/', formData, {
+        withCredentials: true,
+        headers: {
+          'Content-Type': 'multipart/form-data',
         },
-      )
+      })
       //.then(response => console.log(response.data))
       .then(response => setPredictionV2(response.data.prediction));
+    await axios
+      .post('http://172.16.77.135:8000/predictV3/', formData, {
+        withCredentials: true,
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      })
+      //.then(response => console.log(response.data))
+      .then(response => setPredictionV3(response.data.prediction));
+    await axios
+      .post('http://172.16.77.135:8000/predictV4/', formData, {
+        withCredentials: true,
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      })
+      //.then(response => console.log(response.data))
+      .then(response => setPredictionMN(response.data.prediction));
   };
 
   const clicked = () => {
@@ -202,6 +214,14 @@ const Home: () => Node = () => {
                 <Text
                   style={{textAlign: 'center', fontSize: 30, color: 'yellow'}}>
                   CNN_seq2: {isClicked ? predictionV2 : ' '}
+                </Text>
+                <Text
+                  style={{textAlign: 'center', fontSize: 30, color: 'yellow'}}>
+                  CNN_seq3: {isClicked ? predictionV3 : ' '}
+                </Text>
+                <Text
+                  style={{textAlign: 'center', fontSize: 30, color: 'yellow'}}>
+                  CNN_MN: {isClicked ? predictionMN : ' '}
                 </Text>
               </View>
             </View>
